@@ -1,0 +1,51 @@
+.menu {
+  &-toggle {
+    display: block;
+    background-color: transparent;
+    width: 70px;
+    height: 30px;
+    border: 2px solid white;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 0;
+    margin: 0;
+    color: white;
+    font-weight: bold;
+    z-index: 100;
+    transition: all 0.5s ease;
+  }
+  &-content {
+    width: 300px;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: -100%;
+    transition: all 0.5s ease;
+    background-color: black;
+    padding: 0 15px;
+    h2 {
+      color: white;
+      margin-top: 70px;
+    }
+  }
+  &-button {
+    display: block;
+    background-color: transparent;
+    padding: 0 15px;
+    height: 30px;
+    border: 2px solid white;
+    top: 20px;
+    right: 20px;
+    margin: 0;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    &:hover {
+      background-color: white;
+      color: black;
+    }
+  }
+}

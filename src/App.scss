@@ -1,0 +1,18 @@
+* {
+  &:focus {
+    outline: none;
+  }
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  background-color: #afdafc;
+}
+
+.grid {
+  max-width: 50%;
+  margin: 0 auto;
+}

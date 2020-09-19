@@ -1,26 +1,18 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useState} from 'react';
+import './App.scss';
+import {GridContainer} from "./components/Grid/GridContainer";
+import {ToggleMenu} from "./components/Menu/ToggleMenu";
+import {MenuContainer} from "./components/Menu/MenuContainer";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [menuOpen, toggleMenuOpen] = useState(false)
+    return (
+        <div className="App">
+            <ToggleMenu menuOpen={menuOpen} toggleMenuOpen={toggleMenuOpen}/>
+            <MenuContainer menuOpen={menuOpen}/>
+            <GridContainer/>
+        </div>
+    );
 }
 
 export default App;
