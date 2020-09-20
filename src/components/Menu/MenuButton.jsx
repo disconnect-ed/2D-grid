@@ -1,14 +1,11 @@
 import React from "react";
 import './Menu.scss'
+import {Button} from "antd";
 
-export const MenuButton = ({title, onClickAction, actionIsActive}) => {
-    const activeStyle = {
-        backgroundColor: 'white',
-        color: 'black'
-    }
+export const MenuButton = ({title, onClickAction}) => {
     return (
-        <button style={actionIsActive ? activeStyle : null} className='menu-button' onClick={onClickAction}>
-            {title}
-        </button>
+        <div onClick={onClickAction} className="menu-content-block">
+            <Button block type="primary">{title}</Button>
+        </div>
     )
 }

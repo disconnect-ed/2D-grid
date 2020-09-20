@@ -16,17 +16,29 @@
     transition: all 0.5s ease;
   }
   &-content {
-    width: 300px;
+    padding-top: 50px;
+    width: 256px;
     position: fixed;
     top: 0;
     bottom: 0;
     right: -100%;
     transition: all 0.5s ease;
-    background-color: black;
-    padding: 0 15px;
+    background-color: white;
     h2 {
       color: white;
       margin-top: 70px;
+    }
+    &-block {
+      margin-bottom: 20px;
+      padding-left: 24px;
+      padding-right: 15px;
+      label {
+        margin-bottom: 20px;
+        display: block;
+        &:first-child {
+          margin-top: 10px;
+        }
+      }
     }
   }
   &-button {
