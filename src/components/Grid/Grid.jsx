@@ -8,6 +8,7 @@ export const Grid = ({data}) => {
             <VictoryChart
                 theme={VictoryTheme.material}
                 domain={{ x: [0, 10], y: [0, 10] }}
+                // animate={{duration: 1000}}
             >
                 <VictoryScatter
                     style={{ data: { fill: ({index}) => data[index].fill ?  data[index].fill : 'black'} }}

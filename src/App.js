@@ -9,16 +9,16 @@ function App() {
     const [menuOpen, toggleMenuOpen] = useState(true)
     const [data, setData] = useState(
         [
-            {x: 1, y: 1, fill: "gold"},
-            {x: 2, y: 2},
-            {x: 3, y: 3}
+            {x: 1, y: 1},
+            {x: 2, y: 2, fill: 'pink'},
+            {x: 3, y: 3, fill: 'gold'}
         ]
     )
     const [message, setMessage] = useState('')
     return (
         <div className="App">
-            <ToggleMenu menuOpen={menuOpen} toggleMenuOpen={toggleMenuOpen}/>
-            <MenuContainer setMessage={(message) => setMessage(message)} menuOpen={menuOpen} data={data} setData={setData}/>
+            <MenuContainer setMessage={(message) => setMessage(message)} menuOpen={menuOpen} data={data}
+                           setData={setData} toggleMenuOpen={toggleMenuOpen} />
             <GridContainer data={data}/>
             <Message message={message}/>
         </div>

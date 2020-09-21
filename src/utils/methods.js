@@ -23,7 +23,7 @@ export const addObjSelector = (data, obj) => {
 export const findObjSelector = (data, obj) => {
     const objIsExist = data.find(item => item.x === obj.x && item.y === obj.y)
     if (objIsExist) {
-        return obj
+        return objIsExist
     }
 }
 
@@ -32,7 +32,7 @@ export const isInt = (obj) => {
 }
 
 export const objMaxMin = (obj) => {
-    if ((0 <= obj.x && obj.x <= 10 ) && (0 <= obj.y && obj.y <= 10 )) return true
+    if ((0 <= obj.x && obj.x <= 10) && (0 <= obj.y && obj.y <= 10)) return true
 }
 
 export const showMessage = () => {
@@ -42,3 +42,22 @@ export const showMessage = () => {
         mess.classList.remove('error-active')
     }, 5000)
 }
+
+export const moveObjSelector = (data, x, y, delay) => {
+    const newData = [...data]
+    newData.forEach((item) => {
+        if (item.animate === true) {
+            item.x = x
+            item.y = y
+        }
+    })
+    let promise = new Promise(resolve => {
+        setTimeout(() => {
+            resolve(newData)
+        }, delay)
+    })
+    return promise
+}
+
+
+

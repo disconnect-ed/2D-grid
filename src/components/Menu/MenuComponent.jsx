@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import {Menu, Select} from 'antd';
-import {PlusOutlined, MinusOutlined, UndoOutlined} from '@ant-design/icons'
+import {PlusOutlined, MinusOutlined, UndoOutlined, SearchOutlined} from '@ant-design/icons'
 import {MenuButton} from "./MenuButton";
 import {MenuInput} from "./MenuInput";
 
@@ -8,11 +8,11 @@ const {SubMenu} = Menu;
 const { Option } = Select;
 
 export const MenuComponent = ({menuOpen, x, y, changeX, changeY, addObj, setSymbol, delObj, changeFill,
-                                  fill, restart}) => {
+                                  fill, restart, rotateObj, changeRadius, radius, searchObj}) => {
     const activeStyle = {
         right: 0
     }
-    const rootSubmenuKeys = ['sub1', 'sub2', 'sub3'];
+    const rootSubmenuKeys = ['sub1', 'sub2', 'sub3', 'sub4', 'sub5'];
 
     const [state, setState] = useState([])
 
@@ -49,11 +49,11 @@ export const MenuComponent = ({menuOpen, x, y, changeX, changeY, addObj, setSymb
                     <div className="menu-content-block">
                         <label htmlFor='addSelect'>Выберите символ:</label>
                         <Select id='addSelect' defaultValue="circle" style={{ width: '100%' }} onChange={setSymbol}>
-                            <Option value="circle">Круг</Option>
-                            <Option value="star">Звезда</Option>
-                            <Option value="square">Квадрат</Option>
-                            <Option value="diamond">Алмаз</Option>
-                            <Option value="triangleUp">Треугольник</Option>
+                            <Option value="circle">circle</Option>
+                            <Option value="star">star</Option>
+                            <Option value="square">square</Option>
+                            <Option value="diamond">diamond</Option>
+                            <Option value="triangleUp">triangleUp</Option>
                         </Select>
                     </div>
                     <MenuInput id='addObjColor' type='color'
@@ -76,15 +76,34 @@ export const MenuComponent = ({menuOpen, x, y, changeX, changeY, addObj, setSymb
                     />
                     <MenuButton title='Удалить объект' onClickAction={delObj} />
                 </SubMenu>
-                <SubMenu key="sub3" icon={<UndoOutlined />} title="Вращать объект" onTitleClick={restart}>
-                    <MenuInput id='delObjX' placeholder='Введите координату X' type='number'
-                               htmlFor='delObjX' labelTitle='Введите координату X:'
+                <SubMenu icon={<SearchOutlined />}
+                         key="sub3" title="Найти объект"
+                         onTitleClick={restart}
+                >
+                    <MenuInput id='searchObjX' placeholder='Введите координату X' type='number'
+                               htmlFor='searchObjX' labelTitle='Введите координату X'
                                onChange={changeX} value={x}
                     />
-                    <MenuInput id='delObjY' placeholder='Введите координату Y' type='number'
-                               htmlFor='delObjY' labelTitle='Введите координату Y:'
+                    <MenuInput id='searchObjY' placeholder='Введите координату Y' type='number'
+                               htmlFor='searchObjY' labelTitle='Введите координату Y:'
                                onChange={changeY} value={y}
                     />
+                    <MenuButton title='Найти объект' onClickAction={searchObj} />
+                </SubMenu>
+                <SubMenu key="sub4" icon={<UndoOutlined />} title="Вращать объект" onTitleClick={restart}>
+                    <MenuInput id='rotateObjX' placeholder='Введите координату X' type='number'
+                               htmlFor='rotateObjX' labelTitle='Введите координату X:'
+                               onChange={changeX} value={x}
+                    />
+                    <MenuInput id='rotateObjY' placeholder='Введите координату Y' type='number'
+                               htmlFor='rotateObjY' labelTitle='Введите координату Y:'
+                               onChange={changeY} value={y}
+                    />
+                    <MenuInput id='setRadius' placeholder='Введите радиус' type='number'
+                               htmlFor='delObjY' labelTitle='Введите радиус:'
+                               onChange={changeRadius} value={radius}
+                    />
+                    <MenuButton onClickAction={rotateObj} title='Вращать объект' />
                 </SubMenu>
             </Menu>
         </div>
