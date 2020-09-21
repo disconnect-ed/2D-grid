@@ -2,16 +2,18 @@ import React, {useState} from "react";
 import {MenuComponent} from "./MenuComponent";
 import {
     addObjSelector,
-    delObjSelector, findObjSelector,
-    moveObjSelector,
+    delObjSelector, findObjSelector, moveObjSelector,
+    rotateObjSelector,
     showMessage
 } from "../../utils/methods";
 import {ModalComponent} from "../Modal/ModalComponent";
 
 export const MenuContainer = ({menuOpen, data, setData, setMessage, toggleMenuOpen}) => {
-    const [x, setX] = useState('')
-    const [y, setY] = useState('')
-    const [radius, setRadius] = useState('')
+    const [x, setX] = useState(0)
+    const [y, setY] = useState(0)
+    const [newX, setNewX] = useState(0)
+    const [newY, setNewY] = useState(0)
+    const [radius, setRadius] = useState(0)
     const [symbol, setSymbol] = useState('circle')
     const [fill, setFill] = useState('#000000')
     const [objData, setObjData] = useState(null)
@@ -31,6 +33,12 @@ export const MenuContainer = ({menuOpen, data, setData, setMessage, toggleMenuOp
     const changeY = (value) => {
         setY(value)
     }
+    const changeNewX = (value) => {
+        setNewX(value)
+    }
+    const changeNewY = (value) => {
+        setNewY(value)
+    }
     const changeFill = (value) => {
         setFill(value)
     }
@@ -38,10 +46,12 @@ export const MenuContainer = ({menuOpen, data, setData, setMessage, toggleMenuOp
         setRadius(value)
     }
     const restart = () => {
-        changeX('')
-        changeY('')
+        changeX(0)
+        changeY(0)
         changeFill('#000000')
-        changeRadius('')
+        changeRadius(0)
+        changeNewX(0)
+        changeNewY(0)
     }
     const addObj = () => {
         const newObj = {x: +x, y: +y, symbol, fill}
@@ -85,30 +95,40 @@ export const MenuContainer = ({menuOpen, data, setData, setMessage, toggleMenuOp
         toggleMenuOpen(false)
         const currentData = [...data]
         currentData[result].animate = true
-        let newData = await moveObjSelector(currentData, (currentX + currentRadius), currentY, 1000)
+        let newData = await rotateObjSelector(currentData, (currentX + currentRadius), currentY, 1000)
         setData(newData)
-        newData = await moveObjSelector(currentData, currentX, (currentY + currentRadius), 1000)
+        newData = await rotateObjSelector(currentData, currentX, (currentY + currentRadius), 1000)
         setData(newData)
-        newData = await moveObjSelector(currentData, (currentX - currentRadius), currentY, 1000)
+        newData = await rotateObjSelector(currentData, (currentX - currentRadius), currentY, 1000)
         setData(newData)
-        newData = await moveObjSelector(currentData, currentX, (currentY - currentRadius), 1000)
+        newData = await rotateObjSelector(currentData, currentX, (currentY - currentRadius), 1000)
         setData(newData)
-        newData = await moveObjSelector(currentData, (currentX + currentRadius), currentY, 1000)
+        newData = await rotateObjSelector(currentData, (currentX + currentRadius), currentY, 1000)
         setData(newData)
-        newData = await moveObjSelector(currentData, currentX, currentY, 1000)
+        newData = await rotateObjSelector(currentData, currentX, currentY, 1000)
         result = data.findIndex(item => item.animate === true)
         delete newData[result].animate
         setData(newData)
         restart()
         toggleMenuOpen(true)
     }
+    const moveObj = () => {
+        const result = moveObjSelector(data, {x: +x, y: +y}, {x: +newX, y: +newY})
+        if (typeof result === 'string') {
+            setMessage(result)
+            showMessage()
+            return
+        }
+        setData(result)
+        restart()
+    }
     return (
 
         <>
-            <MenuComponent menuOpen={menuOpen} x={x} changeX={changeX}
-                           y={y} changeY={changeY} addObj={addObj}
+            <MenuComponent menuOpen={menuOpen} x={x} changeX={changeX} newX={newX} changeNewX={changeNewX}
+                           y={y} changeY={changeY} addObj={addObj} newY={newY} changeNewY={changeNewY}
                            setSymbol={setSymbol} delObj={delObj} rotateObj={rotateObj}
-                           fill={fill} changeFill={changeFill} restart={restart}
+                           fill={fill} changeFill={changeFill} restart={restart} moveObj={moveObj}
                            changeRadius={changeRadius} radius={radius} searchObj={searchObj}
             />
             <ModalComponent objData={objData} hideModal={hideModal} modalIsOpen={modalIsOpen} />

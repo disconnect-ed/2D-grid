@@ -43,7 +43,7 @@ export const showMessage = () => {
     }, 5000)
 }
 
-export const moveObjSelector = (data, x, y, delay) => {
+export const rotateObjSelector = (data, x, y, delay) => {
     const newData = [...data]
     newData.forEach((item) => {
         if (item.animate === true) {
@@ -59,5 +59,23 @@ export const moveObjSelector = (data, x, y, delay) => {
     return promise
 }
 
+export const moveObjSelector = (data, obj, newObj) => {
+    const objIsExist = findObjSelector(data, obj)
+    if (!objIsExist) return 'Объект не найден!'
+    if (!isInt(newObj)) {
+        return ('Объект должен содержать целочисленные координаты!')
+    }
+    if (!objMaxMin(newObj)) {
+        return 'Координаты объекта должны быть не меньше 0 и не больше 10!'
+    }
+    if (findObjSelector(data, newObj)) {
+        return 'Объект с такими координатами уже существует!'
+    }
+    const objIndex = data.findIndex(item => item.x === obj.x && item.y === obj.y)
+    const mutationArr = [...data]
+    mutationArr[objIndex].x = newObj.x
+    mutationArr[objIndex].y = newObj.y
+    return mutationArr
+}
 
 
