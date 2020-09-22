@@ -1,32 +1,22 @@
+.ant-modal-body {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}
+
 .menu {
-  &-toggle {
-    display: block;
-    background-color: transparent;
-    width: 70px;
-    height: 30px;
-    border: 2px solid white;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 0;
-    margin: 0;
-    color: white;
-    font-weight: bold;
-    z-index: 100;
-    transition: all 0.5s ease;
-  }
   &-content {
-    padding-top: 50px;
     width: 256px;
     position: fixed;
     top: 0;
     bottom: 0;
     right: -100%;
+    z-index: 1;
     transition: all 0.5s ease;
     background-color: white;
     h2 {
-      color: white;
-      margin-top: 70px;
+      text-align: center;
+      margin-top: 25px;
+      color: black;
     }
     &-block {
       margin-bottom: 20px;
@@ -60,4 +50,13 @@
       color: black;
     }
   }
+  &-modal {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    div {
+      width: 50%;
+    }
+  }
 }
+

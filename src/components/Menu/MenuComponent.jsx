@@ -3,9 +3,9 @@ import {Menu, Select} from 'antd';
 import {PlusOutlined, MinusOutlined, UndoOutlined, SearchOutlined, SwapOutlined} from '@ant-design/icons'
 import {MenuButton} from "./MenuButton";
 import {MenuInput} from "./MenuInput";
+import {MenuSelect} from "./MenuSelect";
 
 const {SubMenu} = Menu;
-const {Option} = Select;
 
 export const MenuComponent = ({
                                   menuOpen, x, y, changeX, changeY, addObj, setSymbol, delObj, changeFill,
@@ -29,6 +29,7 @@ export const MenuComponent = ({
     };
     return (
         <div style={menuOpen ? activeStyle : null} className="menu-content">
+            <h2>Выберите действие</h2>
             <Menu
                 mode="inline"
                 openKeys={state}
@@ -49,16 +50,7 @@ export const MenuComponent = ({
                                htmlFor='addObjY' labelTitle='Введите координату Y:'
                                onChange={changeY} value={y}
                     />
-                    <div className="menu-content-block">
-                        <label htmlFor='addSelect'>Выберите символ:</label>
-                        <Select id='addSelect' defaultValue="circle" style={{width: '100%'}} onChange={setSymbol}>
-                            <Option value="circle">circle</Option>
-                            <Option value="star">star</Option>
-                            <Option value="square">square</Option>
-                            <Option value="diamond">diamond</Option>
-                            <Option value="triangleUp">triangleUp</Option>
-                        </Select>
-                    </div>
+                    <MenuSelect onChange={setSymbol}/>
                     <MenuInput id='addObjColor' type='color'
                                htmlFor='addObjColor' labelTitle='Выберите цвет:'
                                onChange={changeFill} value={fill}
@@ -80,7 +72,7 @@ export const MenuComponent = ({
                     <MenuButton title='Удалить объект' onClickAction={delObj}/>
                 </SubMenu>
                 <SubMenu icon={<SearchOutlined/>}
-                         key="sub3" title="Найти объект"
+                         key="sub3" title="Найти и изменить объект"
                          onTitleClick={restart}
                 >
                     <MenuInput id='searchObjX' placeholder='Введите координату X' type='number'

@@ -20,12 +20,36 @@ export const addObjSelector = (data, obj) => {
     return newData
 }
 
+export const changeObjSelector = (data, obj, newObj) => {
+    debugger
+    if (findObjSelector(data, newObj)) {
+        return ('Объект с такими координатами уже существует!')
+    }
+    if (!isInt(newObj)) {
+        return ('Объект должен содержать целочисленные координаты!')
+    }
+    if (!objMaxMin(newObj)) {
+        return ('Координаты объекта должны быть не меньше 0 и не больше 10!')
+    }
+    const newData = [...data]
+    newData.forEach(item => {
+        if (item.x === obj.x && item.y === obj.y) {
+            item.x = newObj.x
+            item.y = newObj.y
+            item.fill = newObj.fill
+            item.symbol = newObj.symbol
+        }
+    })
+    return newData
+}
+
 export const findObjSelector = (data, obj) => {
     const objIsExist = data.find(item => item.x === obj.x && item.y === obj.y)
     if (objIsExist) {
         return objIsExist
     }
 }
+
 
 export const isInt = (obj) => {
     return (obj.x ^ 0) === obj.x && (obj.y ^ 0) === obj.y

@@ -8,9 +8,9 @@ function App() {
     const [menuOpen, toggleMenuOpen] = useState(true)
     const [data, setData] = useState(
         [
-            {x: 1, y: 1, background: 'red'},
-            {x: 2, y: 2, fill: 'pink'},
-            {x: 3, y: 3, fill: 'gold'}
+            {x: 1, y: 1, fill: '#000000', symbol: 'circle'},
+            {x: 2, y: 2, fill: '#ffc0cb', symbol: 'circle'},
+            {x: 3, y: 3, fill: '#ffd700', symbol: 'circle'}
         ]
     )
     const [message, setMessage] = useState('')
