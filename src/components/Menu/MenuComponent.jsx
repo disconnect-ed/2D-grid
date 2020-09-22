@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Menu, Select} from 'antd';
+import {Menu} from 'antd';
 import {PlusOutlined, MinusOutlined, UndoOutlined, SearchOutlined, SwapOutlined} from '@ant-design/icons'
 import {MenuButton} from "./MenuButton";
 import {MenuInput} from "./MenuInput";
