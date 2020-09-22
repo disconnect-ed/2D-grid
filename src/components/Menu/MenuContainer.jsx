@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {MenuComponent} from "./MenuComponent";
 import {
     addObjSelector, changeObjSelector,
-    delObjSelector, findObjSelector, moveObjSelector,
+    delObjSelector, findObjSelector, moveObjSelector, rotateObjMinMaxSelector,
     rotateObjSelector,
     showMessage
 } from "../../utils/methods";
@@ -97,6 +97,12 @@ export const MenuContainer = ({menuOpen, data, setData, setMessage, toggleMenuOp
         let result = data.findIndex(item => item.x === currentX && item.y === currentY)
         if (result < 0) {
             setMessage('Объекта с такими координатами не существует! Создайте его.')
+            showMessage()
+            return
+        }
+        const rotateObjMinMax = rotateObjMinMaxSelector(currentX, currentY, currentRadius)
+        if (rotateObjMinMax) {
+            setMessage(rotateObjMinMax)
             showMessage()
             return
         }
