@@ -10,7 +10,7 @@ const {SubMenu} = Menu;
 export const MenuComponent = ({
                                   menuOpen, x, y, changeX, changeY, addObj, setSymbol, delObj, changeFill,
                                   fill, restart, rotateObj, changeRadius, radius, searchObj, newY, newX,
-                                  changeNewX, changeNewY, moveObj
+                                  changeNewX, changeNewY, moveObj, symbol
                               }) => {
     const activeStyle = {
         right: 0
@@ -50,7 +50,7 @@ export const MenuComponent = ({
                                htmlFor='addObjY' labelTitle='Введите координату Y:'
                                onChange={changeY} value={y}
                     />
-                    <MenuSelect onChange={setSymbol}/>
+                    <MenuSelect value={symbol} onChange={setSymbol}/>
                     <MenuInput id='addObjColor' type='color'
                                htmlFor='addObjColor' labelTitle='Выберите цвет:'
                                onChange={changeFill} value={fill}

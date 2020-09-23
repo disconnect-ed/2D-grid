@@ -3,24 +3,32 @@ const ERROR_NOT_INT = 'Объект должен содержать целочи
 const ERROR_COORD_MAX_MIN = 'Координаты объекта должны быть не меньше 0 и не больше 10!'
 const ERROR_NOT_FOUND = 'Объект не найден!'
 const ERROR_GRID_MIN_MAX = 'Невозможно задать данный радиус! Объект не может выходить за пределы сетки.'
+const ERROR_DATA_MAX = 'Максимальное количество объектов 10!'
 
 export const delObjSelector = (data, obj) => {
-    const objIsExist = findObjSelector(data, obj)
-    if (!objIsExist) return ERROR_NOT_FOUND
-    const newData = data.filter((item) => item.x !== obj.x && item.y !== obj.y)
+    debugger
+    const newData = [...data]
+    // const objIsExist = findObjSelector(data, obj)
+    const objInd = newData.findIndex(item => (item.x === obj.x) && (item.y === obj.y))
+    if (objInd < 0) return ERROR_NOT_FOUND
+    newData.splice(objInd, 1)
+    // const newData = data.filter((item) => (item.x !== obj.x) && (item.y !== obj.y))
     return newData
 }
 
 export const addObjSelector = (data, obj) => {
     const objIsExist = findObjSelector(data, obj)
+    if (data.length >= 10) {
+        return ERROR_DATA_MAX
+    }
     if (objIsExist) {
-        return (ERROR_COORD_EXIST)
+        return ERROR_COORD_EXIST
     }
     if (!isInt(obj)) {
-        return (ERROR_NOT_INT)
+        return ERROR_NOT_INT
     }
     if (!objMaxMin(obj)) {
-        return (ERROR_COORD_MAX_MIN)
+        return ERROR_COORD_MAX_MIN
     }
     const newData = [...data, obj]
     return newData

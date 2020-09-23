@@ -72,6 +72,7 @@ export const MenuContainer = ({menuOpen, data, setData, setMessage, toggleMenuOp
         console.log(data)
     }
     const delObj = () => {
+        debugger
         const result = delObjSelector(data, {x: +x, y: +y})
         if (typeof result === 'string') {
             setMessage(result)
@@ -156,7 +157,7 @@ export const MenuContainer = ({menuOpen, data, setData, setMessage, toggleMenuOp
         <>
             <MenuComponent menuOpen={menuOpen} x={x} changeX={changeX} newX={newX} changeNewX={changeNewX}
                            y={y} changeY={changeY} addObj={addObj} newY={newY} changeNewY={changeNewY}
-                           setSymbol={setSymbol} delObj={delObj} rotateObj={rotateObj}
+                           setSymbol={setSymbol} symbol={symbol} delObj={delObj} rotateObj={rotateObj}
                            fill={fill} changeFill={changeFill} restart={restart} moveObj={moveObj}
                            changeRadius={changeRadius} radius={radius} searchObj={searchObj}
             />
